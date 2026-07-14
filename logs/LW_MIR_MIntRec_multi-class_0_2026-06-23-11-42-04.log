@@ -1,0 +1,147 @@
+2026-06-23 11:42:04,216 - ============================== Params ==============================
+2026-06-23 11:42:04,216 - logger_name: LW_MIR_MIntRec_multi-class_0
+2026-06-23 11:42:04,217 - data_path: D:/py_pjt/LW-MIR/data
+2026-06-23 11:42:04,217 - dataset: MIntRec
+2026-06-23 11:42:04,217 - video_data_path: video_data
+2026-06-23 11:42:04,217 - video_feats_path: video_feats.pkl
+2026-06-23 11:42:04,217 - audio_data_path: audio_data
+2026-06-23 11:42:04,217 - audio_feats_path: audio_feats.pkl
+2026-06-23 11:42:04,217 - text_backbone: bert-large-uncased
+2026-06-23 11:42:04,226 - method: LW_MIR
+2026-06-23 11:42:04,226 - config_file_name: LW_MIR_MIntRec.py
+2026-06-23 11:42:04,226 - seed: 0
+2026-06-23 11:42:04,226 - num_workers: 0
+2026-06-23 11:42:04,226 - log_id: LW_MIR_MIntRec_multi-class_0_2026-06-23-11-42-04
+2026-06-23 11:42:04,226 - gpu_id: 0
+2026-06-23 11:42:04,226 - data_mode: multi-class
+2026-06-23 11:42:04,226 - train: True
+2026-06-23 11:42:04,227 - tune: False
+2026-06-23 11:42:04,227 - save_model: True
+2026-06-23 11:42:04,227 - save_results: True
+2026-06-23 11:42:04,227 - log_path: logs
+2026-06-23 11:42:04,227 - results_path: results
+2026-06-23 11:42:04,227 - output_path: outputs
+2026-06-23 11:42:04,227 - model_path: models
+2026-06-23 11:42:04,227 - cache_path: cache
+2026-06-23 11:42:04,227 - results_file_name: results.csv
+2026-06-23 11:42:04,228 - save_pred: False
+2026-06-23 11:42:04,228 - text_backbone_path: D:\py_pjt\LW-MIR\models/bert-large-uncased
+2026-06-23 11:42:04,228 - text_feats_dim: 1024
+2026-06-23 11:42:04,228 - video_feats_dim: 1024
+2026-06-23 11:42:04,228 - audio_feats_dim: 768
+2026-06-23 11:42:04,228 - feats_processing_type: padding
+2026-06-23 11:42:04,228 - padding_mode: zero
+2026-06-23 11:42:04,229 - padding_loc: end
+2026-06-23 11:42:04,229 - need_aligned: True
+2026-06-23 11:42:04,229 - eval_monitor: f1
+2026-06-23 11:42:04,229 - train_batch_size: 8
+2026-06-23 11:42:04,229 - eval_batch_size: 8
+2026-06-23 11:42:04,229 - test_batch_size: 8
+2026-06-23 11:42:04,229 - wait_patience: 8
+2026-06-23 11:42:04,229 - aligned_method: ctc
+2026-06-23 11:42:04,229 - num_train_epochs: 100
+2026-06-23 11:42:04,230 - weight_hidden_dim: 384
+2026-06-23 11:42:04,231 - weight_dropout: 0.2
+2026-06-23 11:42:04,231 - max_cons_seq_length: 30
+2026-06-23 11:42:04,231 - warmup_proportion: 0.1
+2026-06-23 11:42:04,231 - grad_clip: -1.0
+2026-06-23 11:42:04,231 - lr: 5e-06
+2026-06-23 11:42:04,231 - weight_decay: 0.1
+2026-06-23 11:42:04,231 - wavelet_kernel_types: morlet
+2026-06-23 11:42:04,231 - n_wavelet_kernels: 6
+2026-06-23 11:42:04,231 - wavelet_scale_init: 0.5
+2026-06-23 11:42:04,231 - learnable_scale: True
+2026-06-23 11:42:04,232 - learnable_translation: True
+2026-06-23 11:42:04,232 - wavelet_decomposition_level: 4
+2026-06-23 11:42:04,232 - wavelet_freq_bands: 2
+2026-06-23 11:42:04,232 - use_fft_branch: True
+2026-06-23 11:42:04,232 - fft_hidden_dim: 384
+2026-06-23 11:42:04,232 - wt_hidden_dim: 384
+2026-06-23 11:42:04,232 - cross_attn_heads: 12
+2026-06-23 11:42:04,232 - cross_attn_dropout: 0.15
+2026-06-23 11:42:04,232 - domain_fusion_method: gated
+2026-06-23 11:42:04,233 - use_freq_enhance: True
+2026-06-23 11:42:04,233 - highpass_cutoff: 0.25
+2026-06-23 11:42:04,233 - freq_enhance_lambda_init: 0.6
+2026-06-23 11:42:04,233 - freq_enhance_learnable: True
+2026-06-23 11:42:04,233 - use_content_adaptive_lambda: True
+2026-06-23 11:42:04,233 - use_credibility_gate: True
+2026-06-23 11:42:04,233 - credibility_metrics: wavelet_energy
+2026-06-23 11:42:04,233 - ¿Éµ÷credibility_temperature: 0.3
+2026-06-23 11:42:04,234 - low_credibility_threshold: 0.25
+2026-06-23 11:42:04,234 - dynamic_fusion_type: gated
+2026-06-23 11:42:04,234 - use_hierarchical_decoding: True
+2026-06-23 11:42:04,234 - n_coarse_classes: 5
+2026-06-23 11:42:04,234 - n_fine_classes: 20
+2026-06-23 11:42:04,234 - coarse_feature_ratio: 0.25
+2026-06-23 11:42:04,234 - fine_feature_ratio: 0.75
+2026-06-23 11:42:04,234 - hierarchical_loss_weight: 0.35
+2026-06-23 11:42:04,234 - use_ctx: True
+2026-06-23 11:42:04,234 - prompt_len: 5
+2026-06-23 11:42:04,235 - nheads: 12
+2026-06-23 11:42:04,235 - n_levels: 6
+2026-06-23 11:42:04,235 - attn_dropout: 0.15
+2026-06-23 11:42:04,235 - relu_dropout: 0.0
+2026-06-23 11:42:04,235 - embed_dropout: 0.3
+2026-06-23 11:42:04,235 - res_dropout: 0.15
+2026-06-23 11:42:04,235 - attn_mask: True
+2026-06-23 11:42:04,235 - ff_dim: 3072
+2026-06-23 11:42:04,235 - loss: SupCon
+2026-06-23 11:42:04,235 - temperature: 0.08
+2026-06-23 11:42:04,236 - base_temperature: 0.08
+2026-06-23 11:42:04,236 - contrastive_mode: hierarchical
+2026-06-23 11:42:04,236 - beta_shift: 0.01
+2026-06-23 11:42:04,236 - dropout_prob: 0.5
+2026-06-23 11:42:04,236 - shared_dim: 512
+2026-06-23 11:42:04,236 - eps: 1e-08
+2026-06-23 11:42:04,236 - pred_output_path: outputs\LW_MIR_MIntRec_bert-large-uncased_multi-class_0
+2026-06-23 11:42:04,236 - model_output_path: outputs\LW_MIR_MIntRec_bert-large-uncased_multi-class_0\models
+2026-06-23 11:42:04,237 - num_labels: 20
+2026-06-23 11:42:04,237 - text_seq_len: 30
+2026-06-23 11:42:04,237 - video_seq_len: 230
+2026-06-23 11:42:04,237 - audio_seq_len: 480
+2026-06-23 11:42:04,237 - num_train_examples: 1334
+2026-06-23 11:42:04,237 - ============================== End Params ==============================
+2026-06-23 11:42:08,032 - Intent Recognition begins...
+2026-06-23 11:42:08,032 - Training begins...
+2026-06-23 11:43:03,129 - ***** Epoch: 1: Eval results *****
+2026-06-23 11:43:03,129 -   train_loss = 5.3457
+2026-06-23 11:43:03,130 -   train_acc = 0.057
+2026-06-23 11:43:03,130 -   eval_acc = 0.0247
+2026-06-23 11:43:03,130 -   eval_score = 0.005
+2026-06-23 11:43:03,130 -   best_eval_score = 0.0
+2026-06-23 11:50:42,277 - ***** Epoch: 2: Eval results *****
+2026-06-23 11:50:42,277 -   train_loss = 5.51
+2026-06-23 11:50:42,277 -   train_acc = 0.027
+2026-06-23 11:50:42,277 -   eval_acc = 0.027
+2026-06-23 11:50:42,277 -   eval_score = 0.0026
+2026-06-23 11:50:42,277 -   best_eval_score = 0.005
+2026-06-23 11:50:42,277 - EarlyStopping counter: 1 out of 8
+2026-06-23 11:57:07,244 - ***** Epoch: 3: Eval results *****
+2026-06-23 11:57:07,248 -   train_loss = 5.8795
+2026-06-23 11:57:07,248 -   train_acc = 0.0262
+2026-06-23 11:57:07,248 -   eval_acc = 0.027
+2026-06-23 11:57:07,248 -   eval_score = 0.0026
+2026-06-23 11:57:07,248 -   best_eval_score = 0.005
+2026-06-23 11:57:07,248 - EarlyStopping counter: 2 out of 8
+2026-06-23 12:01:53,425 - ***** Epoch: 4: Eval results *****
+2026-06-23 12:01:53,425 -   train_loss = 7.0435
+2026-06-23 12:01:53,425 -   train_acc = 0.0262
+2026-06-23 12:01:53,425 -   eval_acc = 0.027
+2026-06-23 12:01:53,425 -   eval_score = 0.0026
+2026-06-23 12:01:53,425 -   best_eval_score = 0.005
+2026-06-23 12:01:53,425 - EarlyStopping counter: 3 out of 8
+2026-06-23 12:07:00,716 - ***** Epoch: 5: Eval results *****
+2026-06-23 12:07:00,716 -   train_loss = 12.7224
+2026-06-23 12:07:00,716 -   train_acc = 0.0262
+2026-06-23 12:07:00,716 -   eval_acc = 0.027
+2026-06-23 12:07:00,716 -   eval_score = 0.0026
+2026-06-23 12:07:00,716 -   best_eval_score = 0.005
+2026-06-23 12:07:00,716 - EarlyStopping counter: 4 out of 8
+2026-06-23 12:12:11,823 - ***** Epoch: 6: Eval results *****
+2026-06-23 12:12:11,823 -   train_loss = 30.6461
+2026-06-23 12:12:11,823 -   train_acc = 0.0262
+2026-06-23 12:12:11,823 -   eval_acc = 0.027
+2026-06-23 12:12:11,823 -   eval_score = 0.0026
+2026-06-23 12:12:11,823 -   best_eval_score = 0.005
+2026-06-23 12:12:11,823 - EarlyStopping counter: 5 out of 8

@@ -1,0 +1,119 @@
+2026-06-14 20:18:05,835 - ============================== Params ==============================
+2026-06-14 20:18:05,836 - logger_name: LW_MIR_MIntRec_multi-class_0
+2026-06-14 20:18:05,836 - data_path: D:/py_pjt/LW-MIR/data
+2026-06-14 20:18:05,836 - dataset: MIntRec
+2026-06-14 20:18:05,836 - video_data_path: video_data
+2026-06-14 20:18:05,836 - video_feats_path: video_feats.pkl
+2026-06-14 20:18:05,836 - audio_data_path: audio_data
+2026-06-14 20:18:05,836 - audio_feats_path: audio_feats.pkl
+2026-06-14 20:18:05,836 - text_backbone: bert-large-uncased
+2026-06-14 20:18:05,836 - method: LW_MIR
+2026-06-14 20:18:05,837 - config_file_name: LW_MIR_MIntRec.py
+2026-06-14 20:18:05,837 - seed: 0
+2026-06-14 20:18:05,837 - num_workers: 0
+2026-06-14 20:18:05,837 - log_id: LW_MIR_MIntRec_multi-class_0_2026-06-14-20-18-05
+2026-06-14 20:18:05,837 - gpu_id: 0
+2026-06-14 20:18:05,837 - data_mode: multi-class
+2026-06-14 20:18:05,837 - train: True
+2026-06-14 20:18:05,837 - tune: False
+2026-06-14 20:18:05,838 - save_model: True
+2026-06-14 20:18:05,838 - save_results: True
+2026-06-14 20:18:05,839 - log_path: logs
+2026-06-14 20:18:05,839 - results_path: results
+2026-06-14 20:18:05,839 - output_path: outputs
+2026-06-14 20:18:05,839 - model_path: models
+2026-06-14 20:18:05,839 - cache_path: cache
+2026-06-14 20:18:05,839 - results_file_name: results.csv
+2026-06-14 20:18:05,839 - save_pred: False
+2026-06-14 20:18:05,839 - text_backbone_path: D:\py_pjt\LW-MIR\models/bert-large-uncased
+2026-06-14 20:18:05,839 - text_feats_dim: 1024
+2026-06-14 20:18:05,839 - video_feats_dim: 1024
+2026-06-14 20:18:05,839 - audio_feats_dim: 768
+2026-06-14 20:18:05,840 - feats_processing_type: padding
+2026-06-14 20:18:05,840 - padding_mode: zero
+2026-06-14 20:18:05,840 - padding_loc: end
+2026-06-14 20:18:05,840 - need_aligned: True
+2026-06-14 20:18:05,840 - eval_monitor: f1
+2026-06-14 20:18:05,840 - train_batch_size: 8
+2026-06-14 20:18:05,840 - eval_batch_size: 8
+2026-06-14 20:18:05,840 - test_batch_size: 8
+2026-06-14 20:18:05,840 - wait_patience: 8
+2026-06-14 20:18:05,840 - aligned_method: ctc
+2026-06-14 20:18:05,840 - num_train_epochs: 40
+2026-06-14 20:18:05,840 - weight_hidden_dim: 384
+2026-06-14 20:18:05,841 - weight_dropout: 0.2
+2026-06-14 20:18:05,841 - max_cons_seq_length: 30
+2026-06-14 20:18:05,841 - warmup_proportion: 0.1
+2026-06-14 20:18:05,841 - grad_clip: -1.0
+2026-06-14 20:18:05,841 - lr: 5e-06
+2026-06-14 20:18:05,841 - weight_decay: 0.1
+2026-06-14 20:18:05,841 - wavelet_kernel_types: morlet
+2026-06-14 20:18:05,842 - n_wavelet_kernels: 6
+2026-06-14 20:18:05,842 - wavelet_scale_init: 0.5
+2026-06-14 20:18:05,842 - learnable_scale: True
+2026-06-14 20:18:05,842 - learnable_translation: True
+2026-06-14 20:18:05,842 - wavelet_decomposition_level: 4
+2026-06-14 20:18:05,842 - wavelet_freq_bands: 2
+2026-06-14 20:18:05,842 - use_fft_branch: True
+2026-06-14 20:18:05,842 - fft_hidden_dim: 384
+2026-06-14 20:18:05,842 - wt_hidden_dim: 384
+2026-06-14 20:18:05,843 - cross_attn_heads: 12
+2026-06-14 20:18:05,843 - cross_attn_dropout: 0.15
+2026-06-14 20:18:05,843 - domain_fusion_method: gated
+2026-06-14 20:18:05,843 - use_freq_enhance: True
+2026-06-14 20:18:05,843 - highpass_cutoff: 0.25
+2026-06-14 20:18:05,843 - freq_enhance_lambda_init: 0.6
+2026-06-14 20:18:05,843 - freq_enhance_learnable: True
+2026-06-14 20:18:05,843 - use_content_adaptive_lambda: True
+2026-06-14 20:18:05,843 - use_credibility_gate: True
+2026-06-14 20:18:05,843 - credibility_metrics: wavelet_energy
+2026-06-14 20:18:05,843 - ¿Éµ÷credibility_temperature: 0.3
+2026-06-14 20:18:05,843 - low_credibility_threshold: 0.25
+2026-06-14 20:18:05,844 - dynamic_fusion_type: gated
+2026-06-14 20:18:05,844 - use_hierarchical_decoding: True
+2026-06-14 20:18:05,844 - n_coarse_classes: 5
+2026-06-14 20:18:05,844 - n_fine_classes: 20
+2026-06-14 20:18:05,844 - coarse_feature_ratio: 0.25
+2026-06-14 20:18:05,844 - fine_feature_ratio: 0.75
+2026-06-14 20:18:05,844 - hierarchical_loss_weight: 0.35
+2026-06-14 20:18:05,844 - use_ctx: True
+2026-06-14 20:18:05,844 - prompt_len: 5
+2026-06-14 20:18:05,844 - nheads: 12
+2026-06-14 20:18:05,844 - n_levels: 6
+2026-06-14 20:18:05,844 - attn_dropout: 0.15
+2026-06-14 20:18:05,844 - relu_dropout: 0.0
+2026-06-14 20:18:05,845 - embed_dropout: 0.3
+2026-06-14 20:18:05,845 - res_dropout: 0.15
+2026-06-14 20:18:05,845 - attn_mask: True
+2026-06-14 20:18:05,845 - ff_dim: 3072
+2026-06-14 20:18:05,845 - loss: SupCon
+2026-06-14 20:18:05,845 - temperature: 0.5
+2026-06-14 20:18:05,845 - base_temperature: 0.5
+2026-06-14 20:18:05,845 - contrastive_mode: hierarchical
+2026-06-14 20:18:05,845 - beta_shift: 0.01
+2026-06-14 20:18:05,845 - dropout_prob: 0.5
+2026-06-14 20:18:05,845 - shared_dim: 512
+2026-06-14 20:18:05,846 - eps: 1e-08
+2026-06-14 20:18:05,846 - pred_output_path: outputs\LW_MIR_MIntRec_bert-large-uncased_multi-class_0
+2026-06-14 20:18:05,846 - model_output_path: outputs\LW_MIR_MIntRec_bert-large-uncased_multi-class_0\models
+2026-06-14 20:18:05,846 - num_labels: 20
+2026-06-14 20:18:05,846 - text_seq_len: 30
+2026-06-14 20:18:05,846 - video_seq_len: 230
+2026-06-14 20:18:05,846 - audio_seq_len: 480
+2026-06-14 20:18:05,846 - num_train_examples: 1334
+2026-06-14 20:18:05,846 - ============================== End Params ==============================
+2026-06-14 20:18:10,067 - Intent Recognition begins...
+2026-06-14 20:18:10,067 - Training begins...
+2026-06-14 20:19:07,462 - ***** Epoch: 1: Eval results *****
+2026-06-14 20:19:07,462 -   train_loss = 43.6795
+2026-06-14 20:19:07,462 -   eval_score = 0.0191
+2026-06-14 20:19:07,463 -   best_eval_score = 0.0
+2026-06-14 20:22:49,197 - ***** Epoch: 2: Eval results *****
+2026-06-14 20:22:49,198 -   train_loss = 35.8349
+2026-06-14 20:22:49,198 -   eval_score = 0.0125
+2026-06-14 20:22:49,198 -   best_eval_score = 0.0191
+2026-06-14 20:22:49,198 - EarlyStopping counter: 1 out of 8
+2026-06-14 20:26:26,870 - ***** Epoch: 3: Eval results *****
+2026-06-14 20:26:26,870 -   train_loss = 29.3014
+2026-06-14 20:26:26,870 -   eval_score = 0.0228
+2026-06-14 20:26:26,870 -   best_eval_score = 0.0191
