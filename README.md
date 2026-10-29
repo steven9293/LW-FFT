@@ -35,7 +35,7 @@ LW-FFT/
 │   ├── MIntRec/
 │   └── MIntRec2.0/
 ...
-
+```
 ### 3.2 Training & Testing
 
 * MIntRec
