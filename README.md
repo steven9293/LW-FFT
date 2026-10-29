@@ -24,7 +24,9 @@ pip install -r requirements.txt
 ## 3. Usage
 
 ### 3.1 Dataset Preparation
-Please download the **MIntRec** and **MIntRec 2.0** datasets and place them in the `data/` directory. 
+
+You can evaluate the performance of our proposed LW-FFT on [MIntRec](https://github.com/thuiar/MIntRec) and [MIntRec 2.0](https://github.com/thuiar/MIntRec2.0) by downloading the datasets and placing them in the `data/` directory. 
+
 Ensure the directory structure looks like this:
 
 ```text
