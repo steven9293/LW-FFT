@@ -32,6 +32,4 @@ LW-FFT/
 ├── data/
 │   ├── MIntRec/
 │   └── MIntRec2.0/
-├── models/
-│   └── bert-large-uncased/  (Please download from HuggingFace)
 ...
