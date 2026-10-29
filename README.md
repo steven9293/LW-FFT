@@ -16,3 +16,7 @@ We use Anaconda to create the Python environment:
 conda create --name LW_FFT python=3.12 -y
 conda activate LW_FFT
 
+Install all required libraries:
+
+```bash
+pip install -r requirements.txt
