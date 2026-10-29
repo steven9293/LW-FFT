@@ -47,6 +47,8 @@ sh examples/run_LW_FFT_MIntRec.sh
 sh examples/run_LW_FFT_MIntRec2.sh
 ```
 
+## 4. Model
+![LW-FFT Architecture](figs/architecture.png))
 
 
 
