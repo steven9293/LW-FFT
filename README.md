@@ -58,10 +58,12 @@ Implementation Details of the Time-Frequency Sequence Encode：
 
 ## 5. Experimental Results
 
+![Experimental Results](figs/Experimental_Results.png)
 
 
+## 6. Acknowledgments
 
+Some of the codes in this repo are adapted from [MIntRec](https://github.com/thuiar/MIntRec), and we are greatly thankful.
 
-
-
+If you have any questions, please open issues and illustrate your problems as detailed as possible.
 
