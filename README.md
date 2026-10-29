@@ -1,6 +1,7 @@
 # Learnable Wavelet-FFT Dual-Path Reasoning for Multimodal Intent Recognition
 
 This is the official PyTorch implementation of our paper: 
+<br>
 **"Learnable Wavelet-FFT Dual-Path Reasoning for Multimodal Intent Recognition"**.
 
 ## 📖 Introduction
