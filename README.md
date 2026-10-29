@@ -13,5 +13,8 @@ Multimodal intent recognition (MIR), which leverages linguistic, acoustic, and v
 We use Anaconda to create the Python environment:
 
 ```bash
-conda create --name LW_FFT python=3.9 -y
+conda create --name LW_FFT python=3.12 -y
 conda activate LW_FFT
+
+Install all required libraries:
+pip install -r requirements.txt
