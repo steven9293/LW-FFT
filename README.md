@@ -21,3 +21,17 @@ Install all required libraries:
 ```bash
 pip install -r requirements.txt
 ```
+## 3. Usage
+
+### 3.1 Dataset Preparation
+Please download the **MIntRec** and **MIntRec 2.0** datasets and place them in the `data/` directory. 
+Ensure the directory structure looks like this:
+
+```text
+LW-FFT/
+├── data/
+│   ├── MIntRec/
+│   └── MIntRec2.0/
+├── models/
+│   └── bert-large-uncased/  (Please download from HuggingFace)
+...
