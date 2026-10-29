@@ -18,4 +18,5 @@ conda activate LW_FFT
 
 Install all required libraries:
 
+bash
 pip install -r requirements.txt
