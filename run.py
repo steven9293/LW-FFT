@@ -17,7 +17,7 @@ def parse_arguments():
     parser.add_argument('--logger_name', type=str, default='Multimodal Intent Recognition',
                         help="Logger name for multimodal intent recognition.")
 
-    parser.add_argument("--data_path", type=str, default=  r'D:/py_pjt/LW-MIR/data',       #      '/home/sharing/data',
+    parser.add_argument("--data_path", type=str, default=  r'D:/py_pjt/LW-FFT/data',       #      '/home/sharing/data',
                         help="The input data dir. Should contain text, video and audio data for the task.")
 
     parser.add_argument('--dataset', type=str, default='MIntRec', help="The selected dataset.")
@@ -34,9 +34,9 @@ def parse_arguments():
     parser.add_argument("--text_backbone", type=str, default='bert-large-uncased',
                         help="which backbone to use for text modality")  # bert-base-uncased  bert-large-uncased
 
-    parser.add_argument('--method', type=str, default='LW_MIR', help="which method to use.")
+    parser.add_argument('--method', type=str, default='LW_FFT', help="which method to use.")
 
-    parser.add_argument("--config_file_name", type=str, default='LW_MIR_MIntRec.py', help="The name of the config file.")
+    parser.add_argument("--config_file_name", type=str, default='LW_FFT_MIntRec.py', help="The name of the config file.")
 
     parser.add_argument('--seed', type=int, default=0, help="The selected seed.")
 

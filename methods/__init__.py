@@ -1,6 +1,6 @@
-from .LW_MIR.manager import LW_MIR_manager
+from .LW_FFT.manager import LW_FFT_manager
 method_map = {
-    'LW_MIR':LW_MIR_manager
+    'LW_FFT': LW_FFT_manager
 
 
 }
