@@ -35,3 +35,29 @@ LW-FFT/
 │   ├── MIntRec/
 │   └── MIntRec2.0/
 ...
+
+### 3.2 Training & Testing
+
+* MIntRec
+```bash
+sh examples/run_LW_FFT_MIntRec.sh
+```
+* MIntRec2.0
+```bash
+sh examples/run_LW_FFT_MIntRec2.sh
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
