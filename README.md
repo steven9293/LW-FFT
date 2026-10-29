@@ -50,11 +50,11 @@ sh examples/run_LW_FFT_MIntRec2.sh
 ## 4. Model
 Overall architecture diagram of the LW-FFT：
 
-(figs/architecture.png)
+![LW-FFT Architecture](figs/architecture.png)
 
 Implementation Details of the Time-Frequency Sequence Encode：
 
-
+![LW-FFT Architecture](figs/Time_Fre.png)
 
 
 
