@@ -48,7 +48,8 @@ sh examples/run_LW_FFT_MIntRec2.sh
 ```
 
 ## 4. Model
-![LW-FFT Architecture](figs/architecture.png))
+Overall architecture diagram of the LW-FFT：
+![LW-FFT Architecture](figs/architecture.png)
 
 
 
