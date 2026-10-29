@@ -24,11 +24,11 @@ class Param():
 
             # ========== Model Dimensions ==========
             'text_feats_dim': 1024,
-            'video_feats_dim': 256,   # MIntRec 2.0 的 Swin-roi
+            'video_feats_dim': 256,   
             'audio_feats_dim': 768,
             'weight_hidden_dim': 384,
             'weight_dropout': 0.2,
-            'n_coarse_classes': 6,    # MIntRec 2.0 粗粒度类别数
+            'n_coarse_classes': 6,   
 
             # ========== Loss & Align Parameters ==========
             'temperature': 0.08,
