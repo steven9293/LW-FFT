@@ -272,6 +272,21 @@ class LW_FFT(nn.Module):
         self.video_adapter = nn.Linear(self.video_feats_dim, self.hidden_dim)
         self.audio_adapter = nn.Linear(self.audio_feats_dim, self.hidden_dim)
 
+         self.fft_proj_text = nn.Sequential(
+            nn.Linear(self.text_feats_dim, self.hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(self.dropout)
+        )
+        self.fft_proj_video = nn.Sequential(
+            nn.Linear(self.video_feats_dim, self.hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(self.dropout)
+        )
+        self.fft_proj_audio = nn.Sequential(
+            nn.Linear(self.audio_feats_dim, self.hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(self.dropout)
+        )
 
 
     def forward(self, text_feats, video_feats, audio_feats):
@@ -303,16 +318,15 @@ class LW_FFT(nn.Module):
         audio_proj = self.audio_adapter(audio_feat.float())  
 
        
-        def compute_fft_feat(x):
-            x_perm = x.permute(0, 2, 1)  # [B, H, T]
+        def compute_fft_feat(x, proj):
+            x_perm = x.permute(0, 2, 1)                    
             fft_out = torch.fft.rfft(x_perm, dim=-1).real 
-            fft_proj = self.fft_proj(fft_out.mean(dim=-1)) 
-            return fft_proj
+            return proj(fft_out.mean(dim=-1))              
 
-        t_fft = compute_fft_feat(text_proj)
-        v_fft = compute_fft_feat(video_proj)
-        a_fft = compute_fft_feat(audio_proj)
-        fft_global = (t_fft + v_fft + a_fft) / 3.0  
+        t_fft = compute_fft_feat(text_feat,  self.fft_proj_text)
+        v_fft = compute_fft_feat(video_feat, self.fft_proj_video)
+        a_fft = compute_fft_feat(audio_feat, self.fft_proj_audio)
+        fft_global = (t_fft + v_fft + a_fft) / 3.0
 
        
         fft_global_expanded = fft_global.unsqueeze(1).expand(-1, fused_wavelet.shape[1], -1)
