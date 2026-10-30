@@ -16,9 +16,9 @@ benchmarks = {
         },
         'binary_intent_labels': ['Emotion', 'Goal'],
         'max_seq_lengths':{
-            'text': 30, # truth: 26
-            'video': 230, # truth: 225
-            'audio': 480, # truth: 477
+            'text': 30, 
+            'video': 230, 
+            'audio': 480,
         }
     },
     'MIntRec2.0': {
