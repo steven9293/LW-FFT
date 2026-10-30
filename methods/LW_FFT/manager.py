@@ -61,7 +61,7 @@ class LW_FFT_manager:
 
         return optimizer, scheduler
 
-    # 在 _train 方法中，确保使用梯度裁剪
+    
     def _train(self, args):
         early_stopping = EarlyStopping(args)
         grad_clip_norm = getattr(args, 'grad_clip', 1.0)
@@ -90,7 +90,7 @@ class LW_FFT_manager:
 
                     loss = self.loss_lw(outputs, label_ids)
 
-                    # 检查loss是否为NaN
+                   
                     if torch.isnan(loss):
                         self.logger.warning(f"NaN loss detected at step {step}, skipping...")
                         continue
@@ -98,7 +98,7 @@ class LW_FFT_manager:
                     self.optimizer.zero_grad()
                     loss.backward()
 
-                    # 梯度裁剪
+                   
                     torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=grad_clip_norm)
 
                     preds = logits.argmax(dim=1)
