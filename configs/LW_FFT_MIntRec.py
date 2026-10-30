@@ -4,14 +4,14 @@ class Param():
 
     def _get_hyper_parameters(self, args):
         hyper_parameters = {
-            # ========== Common Parameters ==========
+            # Common Parameters 
             'padding_mode': 'zero',
             'padding_loc': 'end',
             'need_aligned': True,
             'aligned_method': ['ctc'],
             'eval_monitor': ['f1'],
 
-            # ========== Training Parameters ==========
+            # Training Parameters 
             'train_batch_size': 8,
             'eval_batch_size': 8,
             'test_batch_size': 8,
@@ -22,7 +22,7 @@ class Param():
             'lr': [5e-6],
             'weight_decay': 0.1,
 
-            # ========== Model Dimensions ==========
+            # Model Dimensions
             'text_feats_dim': 1024,  # BERT large
             'video_feats_dim': 1024,  # Swin Transformer
             'audio_feats_dim': 768,  # WavLM
@@ -30,11 +30,11 @@ class Param():
             'weight_dropout': 0.2,
             'n_coarse_classes': 5,
 
-            # ========== Loss & Align Parameters ==========
+            # Loss & Align Parameters 
             'temperature': 0.08,
             'eps': 1e-8,
 
-            # ========== Loss Weights ==========
+            # Loss Weights 
             'w_contrast': 0.05,
             'w_sparsity': 0.0001,
             'w_tf': 0.005,
