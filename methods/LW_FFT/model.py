@@ -5,9 +5,7 @@ import torch.nn.functional as F
 import torch.fft as fft
 
 
-# ------------------------------------------------------------
-# 1. 可学习小波变换层（多核参数化小波）
-# ------------------------------------------------------------
+
 class LearnableWaveletLayer(nn.Module):
     def __init__(self, input_dim, hidden_dim, num_kernels=6, kernel_size=3):
         super().__init__()
@@ -39,9 +37,7 @@ class LearnableWaveletLayer(nn.Module):
         return approx, detail
 
 
-# ------------------------------------------------------------
-# 2. 时频-序列双分支编码器
-# ------------------------------------------------------------
+
 class TimeFrequencyEncoder(nn.Module):
     def __init__(self, input_dim, hidden_dim, dropout=0.1):
         super().__init__()
@@ -78,9 +74,7 @@ class TimeFrequencyEncoder(nn.Module):
         return fused, approx, detail
 
 
-# ------------------------------------------------------------
-# 3. 自适应频率增强模块
-# ------------------------------------------------------------
+
 class AdaptiveFrequencyEnhancement(nn.Module):
     def __init__(self, hidden_dim):
         super().__init__()
@@ -105,9 +99,6 @@ class AdaptiveFrequencyEnhancement(nn.Module):
         return enhanced
 
 
-# ------------------------------------------------------------
-# 4. 意图感知的维度掩码路由（创新核心）
-# ------------------------------------------------------------
 class IntentAwareDimensionMask(nn.Module):
     def __init__(self, hidden_dim=384, num_intents=20, temperature=0.1):
         super().__init__()
@@ -115,10 +106,10 @@ class IntentAwareDimensionMask(nn.Module):
         self.num_intents = num_intents
         self.temperature = temperature
 
-        # 意图原型
+     
         self.intent_prototypes = nn.Parameter(torch.randn(num_intents, hidden_dim) * 0.01)
 
-        # 意图匹配网络
+      
         self.intent_matcher = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim // 2),
             nn.ReLU(),
@@ -126,7 +117,7 @@ class IntentAwareDimensionMask(nn.Module):
             nn.Linear(hidden_dim // 2, num_intents)
         )
 
-        # 维度级掩码预测器
+       
         self.dimension_mask_predictor = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim // 2),
             nn.ReLU(),
@@ -135,22 +126,22 @@ class IntentAwareDimensionMask(nn.Module):
             nn.Sigmoid()
         )
 
-        # 融合参数
+       
         self.alpha = nn.Parameter(torch.tensor(0.5))
 
     def forward(self, z, return_all=False):
         B, H = z.shape
         temp = max(self.temperature, 0.05)
 
-        # 意图匹配
+      
         intent_scores = self.intent_matcher(z)
         intent_weights = F.softmax(intent_scores / temp, dim=-1)
         intent_mask = torch.sigmoid(torch.matmul(intent_weights, self.intent_prototypes))
 
-        # 维度级掩码
+     
         dim_mask = self.dimension_mask_predictor(z)
 
-        # 融合
+        
         alpha = torch.sigmoid(self.alpha)
         final_mask = alpha * intent_mask + (1 - alpha) * dim_mask
         final_mask = torch.clamp(final_mask, 0.1, 0.9)
@@ -164,23 +155,22 @@ class IntentAwareDimensionMask(nn.Module):
                 'intent_mask': intent_mask,
                 'dim_mask': dim_mask,
                 'intent_weights': intent_weights,
-                # ✅ 添加约束所需的信息
-                'mask_mean': final_mask.mean(),           # 掩码均值
-                'mask_std': final_mask.std(),             # 掩码标准差
-                'intent_entropy': -(intent_weights * torch.log(intent_weights + 1e-8)).sum(-1).mean(),  # 意图熵
-                'z_energy': z.norm(p=2, dim=-1).mean(),   # 输入能量
-                'z_masked_energy': z_masked.norm(p=2, dim=-1).mean(),  # 输出能量
+               
+                'mask_mean': final_mask.mean(),           
+                'mask_std': final_mask.std(),             
+                'intent_entropy': -(intent_weights * torch.log(intent_weights + 1e-8)).sum(-1).mean(),  
+                'z_energy': z.norm(p=2, dim=-1).mean(),  
+                'z_masked_energy': z_masked.norm(p=2, dim=-1).mean(),  
             }
 
-        return z_masked, final_mask, intent_weights# ------------------------------------------------------------
-# 5. 模态可信度感知的动态融合
-# ------------------------------------------------------------
+        return z_masked, final_mask, intent_weights
+        
 class WaveletReliabilityFusion(nn.Module):
     def __init__(self, hidden_dim, num_modalities=3):
         super().__init__()
         self.num_modalities = num_modalities
         self.reliability_net = nn.Sequential(
-            nn.Linear(hidden_dim * 2, hidden_dim),  # 修复维度
+            nn.Linear(hidden_dim * 2, hidden_dim),  
             nn.ReLU(),
             nn.Dropout(0.1),
             nn.Linear(hidden_dim, 1),
@@ -206,17 +196,12 @@ class WaveletReliabilityFusion(nn.Module):
         return weights
 
 
-# ------------------------------------------------------------
-# 6. 主模型：LW-MIR (集成意图感知路由)
 
-# ------------------------------------------------------------
-# 5. 主模型：LW-MIR (Learnable Wavelet Multimodal Intent Recognition)
-# ------------------------------------------------------------
 class LW_FFT(nn.Module):
     def __init__(self, args):
         super(LW_FFT, self).__init__()
 
-        # 配置参数
+        
         self.text_feats_dim = args.text_feats_dim
         self.video_feats_dim = args.video_feats_dim
         self.audio_feats_dim = args.audio_feats_dim
@@ -234,32 +219,32 @@ class LW_FFT(nn.Module):
         from .SubNets.FeatureNets import BERTEncoder
         self.text_backbone = BERTEncoder(args)
 
-        # 各模态的编码器（时频-序列双分支）
+        
         self.text_encoder = TimeFrequencyEncoder(self.text_feats_dim, self.hidden_dim, self.dropout)
         self.video_encoder = TimeFrequencyEncoder(self.video_feats_dim, self.hidden_dim, self.dropout)
         self.audio_encoder = TimeFrequencyEncoder(self.audio_feats_dim, self.hidden_dim, self.dropout)
 
-        # 可学习傅里叶变换分支
+        
         self.fft_proj = nn.Sequential(
             nn.Linear(self.hidden_dim, self.hidden_dim),
             nn.ReLU(),
             nn.Dropout(self.dropout)
         )
 
-        # 交叉注意力融合
+       
         self.cross_modal_attn = nn.MultiheadAttention(
             self.hidden_dim, num_heads=4, dropout=self.dropout, batch_first=True
         )
 
-        # 自适应频率增强
+       
         self.afe_text = AdaptiveFrequencyEnhancement(self.hidden_dim)
         self.afe_video = AdaptiveFrequencyEnhancement(self.hidden_dim)
         self.afe_audio = AdaptiveFrequencyEnhancement(self.hidden_dim)
 
-        # 小波域可信度融合
+        
         self.reliability_fusion = WaveletReliabilityFusion(self.hidden_dim)
 
-        # ========== 意图感知维度掩码 ==========
+       
         self.intent_routing = IntentAwareDimensionMask(
             hidden_dim=self.hidden_dim,
             num_intents=self.num_labels,
@@ -268,7 +253,7 @@ class LW_FFT(nn.Module):
         )
 
         self.final_classifier = nn.Linear(self.hidden_dim, self.num_labels)
-        # ========== 层次化融合层（核心创新） ==========
+        
 
         self.fusion_gate = nn.Sequential(
             nn.Linear(self.hidden_dim, self.hidden_dim // 2),
@@ -277,10 +262,10 @@ class LW_FFT(nn.Module):
             nn.Sigmoid()
         )
 
-        # 时序注意力引导
+        
         self.temporal_attn = nn.Linear(self.hidden_dim, 1)
 
-        # 辅助损失权重
+       
         self.lambda_coarse = getattr(args, 'lambda_coarse', 0.5)
         self.lambda_fine = getattr(args, 'lambda_fine', 0.5)
         self.text_adapter = nn.Linear(self.text_feats_dim, self.hidden_dim)
@@ -299,46 +284,46 @@ class LW_FFT(nn.Module):
         else:
             text_feat, audio_feat, video_feat = text_feats, audio_feats, video_feats
 
-        # 1. 各模态双分支编码
+       
         t_feat, t_approx, t_detail = self.text_encoder(text_feat)
         v_feat, v_approx, v_detail = self.video_encoder(video_feat)
         a_feat, a_approx, a_detail = self.audio_encoder(audio_feat)
 
-        # 2. 自适应频率增强
+       
         t_enh = self.afe_text(t_feat)
         v_enh = self.afe_video(v_feat)
         a_enh = self.afe_audio(a_feat)
 
-        # 3. 小波域可信度评估
+       
         mod_weights = self.reliability_fusion([(t_approx, t_detail), (v_approx, v_detail), (a_approx, a_detail)])
         fused_wavelet = mod_weights[:, 0:1, :] * t_enh + mod_weights[:, 1:2, :] * v_enh + mod_weights[:, 2:3, :] * a_enh
 
-        text_proj = self.text_adapter(text_feat.float())  # [B, 30, 384]
-        video_proj = self.video_adapter(video_feat.float())  # [B, 30, 384]
-        audio_proj = self.audio_adapter(audio_feat.float())  # [B, 30, 384]
+        text_proj = self.text_adapter(text_feat.float())  
+        video_proj = self.video_adapter(video_feat.float())  
+        audio_proj = self.audio_adapter(audio_feat.float())  
 
-        # ========== 3. FFT分支（用投影后的特征） ==========
+       
         def compute_fft_feat(x):
             x_perm = x.permute(0, 2, 1)  # [B, H, T]
-            fft_out = torch.fft.rfft(x_perm, dim=-1).real  # [B, H, T/2]
-            fft_proj = self.fft_proj(fft_out.mean(dim=-1))  # [B, H]
+            fft_out = torch.fft.rfft(x_perm, dim=-1).real 
+            fft_proj = self.fft_proj(fft_out.mean(dim=-1)) 
             return fft_proj
 
         t_fft = compute_fft_feat(text_proj)
         v_fft = compute_fft_feat(video_proj)
         a_fft = compute_fft_feat(audio_proj)
-        fft_global = (t_fft + v_fft + a_fft) / 3.0  # [B, 384]
+        fft_global = (t_fft + v_fft + a_fft) / 3.0  
 
-        # 5. 交叉注意力融合
+       
         fft_global_expanded = fft_global.unsqueeze(1).expand(-1, fused_wavelet.shape[1], -1)
         fused_cross, _ = self.cross_modal_attn(
             query=fft_global_expanded,
             key=fft_global_expanded,
             value=fused_wavelet
         )
-        fused_cross_pooled = fused_cross.mean(dim=1)  # [B, H]
+        fused_cross_pooled = fused_cross.mean(dim=1) 
 
-        # ========== 6. 意图感知维度掩码 ==========
+        
         routing_outputs = self.intent_routing(fused_cross_pooled, return_all=True)
         z_masked = routing_outputs['z_masked']
         final_mask = routing_outputs['final_mask']
@@ -347,7 +332,7 @@ class LW_FFT(nn.Module):
 
         final_logits =self.final_classifier(z_masked)
 
-        # 8. 时序注意力
+       
         t_attn = torch.sigmoid(self.temporal_attn(t_feat))
         v_attn = torch.sigmoid(self.temporal_attn(v_feat))
         a_attn = torch.sigmoid(self.temporal_attn(a_feat))
