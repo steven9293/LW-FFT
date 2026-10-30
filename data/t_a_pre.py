@@ -5,13 +5,7 @@ import logging
 
 
 def get_modal_data(args, data_args, modal_name, feats_path):
-    """
-    通用模态数据加载
-    args: 配置对象（包含 seq_len 属性）
-    data_args: 数据配置字典（包含索引）
-    modal_name: 'audio' 或 'video'
-    feats_path: 特征文件路径
-    """
+   
     logger = logging.getLogger(args.logger_name)
 
     if not os.path.exists(feats_path):
@@ -21,7 +15,7 @@ def get_modal_data(args, data_args, modal_name, feats_path):
 
     feats = load_feats(data_args, feats_path)
 
-    # 根据模态获取对应的最大长度
+   
     if modal_name == 'audio':
         max_seq_len = args.audio_seq_len
     elif modal_name == 'video':
@@ -37,7 +31,7 @@ def get_modal_data(args, data_args, modal_name, feats_path):
 
 
 def load_feats(data_args, feats_path):
-    """加载特征文件"""
+  
     with open(feats_path, 'rb') as f:
         feats = pickle.load(f)
 
@@ -53,7 +47,7 @@ def load_feats(data_args, feats_path):
 
 
 def padding(feat, max_length, padding_mode='zero', padding_loc='end'):
-    """对单个特征进行padding或截断"""
+   
     assert padding_mode in ['zero', 'normal']
     assert padding_loc in ['start', 'end']
 
@@ -75,7 +69,7 @@ def padding(feat, max_length, padding_mode='zero', padding_loc='end'):
 
 
 def padding_feats(feats, max_seq_len, modal_name=''):
-    """对所有特征进行padding"""
+   
     p_feats = {}
 
     for dataset_type in feats.keys():
@@ -87,7 +81,7 @@ def padding_feats(feats, max_seq_len, modal_name=''):
             x_f = np.array(x)
             x_f = x_f.squeeze(1) if x_f.ndim == 3 else x_f
 
-            # 调试信息
+           
             if i == 0 and dataset_type == 'train':
                 print(f"{modal_name} first train feat shape: {x_f.shape}")
 
@@ -103,12 +97,12 @@ def padding_feats(feats, max_seq_len, modal_name=''):
     return p_feats
 
 
-# ========== 便捷函数（保持原接口兼容）==========
+
 def get_a_data(args, data_args):
-    """加载音频数据"""
+    
     return get_modal_data(args, data_args, 'audio', data_args['audio_feats_path'])
 
 
 def get_v_data(args, data_args):
-    """加载视频数据"""
+    
     return get_modal_data(args, data_args, 'video', data_args['video_feats_path'])
