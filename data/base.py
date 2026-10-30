@@ -22,7 +22,6 @@ class DataManager:
         self.logger.info('Lists of intent labels are: %s', str(self.label_list))
         args.num_labels = len(self.label_list)
 
-        # 设置序列长度
         max_seq_lengths = bm['max_seq_lengths']
         args.text_seq_len = max_seq_lengths['text']
         args.video_seq_len = max_seq_lengths['video']
@@ -83,7 +82,7 @@ def get_dataloader(args, mm_data):
 
 
 def get_indexes_annotations(args, label_list, read_file_path):
-    """从TSV文件读取索引和标签"""
+    
     label_map = {}
     for i, label in enumerate(label_list):
         label_map[label] = i
@@ -94,16 +93,16 @@ def get_indexes_annotations(args, label_list, read_file_path):
         label_ids = []
 
         for i, line in enumerate(data):
-            if i == 0:  # 跳过表头
+            if i == 0:  
                 continue
 
             if args.dataset == 'MIntRec':
-                # MIntRec: 列0,1,2 组成索引，标签在第4列
+                
                 index = '_'.join([line[0], line[1], line[2]])
                 label_id = label_map[line[4]]
 
             elif args.dataset == 'MIntRec2.0':
-                # MIntRec2.0: dia+列0, utt+列1 组成索引，标签在第3列
+                
                 dialogue_id=line[0].strip()
                 utterance_id=line[1].strip()
                 index = '_'.join(['dia' + str(line[0]), 'utt' + str(line[1])])
