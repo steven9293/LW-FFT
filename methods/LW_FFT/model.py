@@ -264,10 +264,7 @@ class LW_FFT(nn.Module):
 
         
         self.temporal_attn = nn.Linear(self.hidden_dim, 1)
-
-       
-        self.lambda_coarse = getattr(args, 'lambda_coarse', 0.5)
-        self.lambda_fine = getattr(args, 'lambda_fine', 0.5)
+   
         self.text_adapter = nn.Linear(self.text_feats_dim, self.hidden_dim)
         self.video_adapter = nn.Linear(self.video_feats_dim, self.hidden_dim)
         self.audio_adapter = nn.Linear(self.audio_feats_dim, self.hidden_dim)
