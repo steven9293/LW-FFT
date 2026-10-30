@@ -17,7 +17,7 @@ def parse_arguments():
     parser.add_argument('--logger_name', type=str, default='Multimodal Intent Recognition',
                         help="Logger name for multimodal intent recognition.")
 
-    parser.add_argument("--data_path", type=str, default=  r'D:/py_pjt/LW-FFT/data',       #      '/home/sharing/data',
+    parser.add_argument("--data_path", type=str, default=  r'/home/sharing/data',       
                         help="The input data dir. Should contain text, video and audio data for the task.")
 
     parser.add_argument('--dataset', type=str, default='MIntRec', help="The selected dataset.")
