@@ -91,7 +91,7 @@ class DataProcessor(object):
     @classmethod
     def _read_tsv(cls, input_file, quotechar=None):
         """Reads a tab separated value file."""
-        with open(input_file, "r", encoding="utf-8") as f:  # ✅ 添加 encoding="utf-8"
+        with open(input_file, "r", encoding="utf-8") as f: 
             reader = csv.reader(f, delimiter="\t", quotechar=quotechar)
             lines = []
             for line in reader:
@@ -159,24 +159,7 @@ def convert_examples_to_features(args, examples, tokenizer):
             if len(tokens_a) > max_seq_length - 2:
                 tokens_a = tokens_a[:(max_seq_length - 2)]
 
-        # The convention in BERT is:
-        # (a) For sequence pairs:
-        #  tokens:   [CLS] is this jack ##son ##ville ? [SEP] no it is not . [SEP]
-        #  type_ids: 0   0  0    0    0     0       0 0    1  1  1  1   1 1
-        # (b) For single sequences:
-        #  tokens:   [CLS] the dog is hairy . [SEP]
-        #  type_ids: 0   0   0   0  0     0 0
-        #
-        # Where "type_ids" are used to indicate whether this is the first
-        # sequence or the second sequence. The embedding vectors for `type=0` and
-        # `type=1` were learned during pre-training and are added to the wordpiece
-        # embedding vector (and position vector). This is not *strictly* necessary
-        # since the [SEP] token unambigiously separates the sequences, but it makes
-        # it easier for the model to learn the concept of sequences.
-        #
-        # For classification tasks, the first vector (corresponding to [CLS]) is
-        # used as as the "sentence vector". Note that this only makes sense because
-        # the entire model is fine-tuned.
+        
         tokens = ["[CLS]"] + tokens_a + ["[SEP]"]
         segment_ids = [0] * len(tokens)
 
@@ -186,8 +169,7 @@ def convert_examples_to_features(args, examples, tokenizer):
 
         input_ids = tokenizer.convert_tokens_to_ids(tokens)
 
-        # The mask has 1 for real tokens and 0 for padding tokens. Only real
-        # tokens are attended to.
+       
         input_mask = [1] * len(input_ids)
 
         # Zero-pad up to the sequence length.
@@ -200,15 +182,7 @@ def convert_examples_to_features(args, examples, tokenizer):
         assert len(input_mask) == max_seq_length
         assert len(segment_ids) == max_seq_length
 
-        # if ex_index < 5:
-        #     logger.info("*** Example ***")
-        #     logger.info("guid: %s" % (example.guid))
-        #     logger.info("tokens: %s" % " ".join(
-        #         [str(x) for x in tokens]))
-        #     logger.info("input_ids: %s" % " ".join([str(x) for x in input_ids]))
-        #     logger.info("input_mask: %s" % " ".join([str(x) for x in input_mask]))
-        #     logger.info(
-        #         "segment_ids: %s" % " ".join([str(x) for x in segment_ids]))
+       
 
         features.append(
             InputFeatures(input_ids=input_ids,
