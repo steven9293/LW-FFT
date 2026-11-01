@@ -62,14 +62,7 @@ Implementation Details of the Time-Frequency Sequence Encode：
 
 ## 6. Code Release & Maintenance
 
-We are committed to promoting reproducible research. The current repository provides the **basic training pipeline, data processing scripts, and configuration files** for the LW-FFT framework to facilitate the peer-review process.
-
-To protect the intellectual property of our core innovations (specifically the **Learnable Wavelet Layer** and the **Intent-Aware Dimension Mask Routing module**), the implementations of these specific modules are currently abstracted. 
-
-**The complete source code, including all core modules and pre-trained weights, will be fully open-sourced immediately upon the acceptance of this paper.**
-
-For any inquiries or requests regarding the code, please feel free to contact the authors.
-
+Only a small portion of the supporting code is provided in this repository. The core implementations  are currently withheld to protect intellectual property.The complete source code will be fully open-sourced upon the acceptance of this paper.
 ## 7. Acknowledgments
 
 Some of the codes in this repo are adapted from [MIntRec](https://github.com/thuiar/MIntRec), and we are greatly thankful.
